@@ -12,19 +12,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ["modifyvm", :id, "--memory", 256]
   end
 
-  config.vm.define 'app', primary: true do |machine|
-    machine.vm.hostname = 'app'
-    machine.vm.network "private_network", ip: "192.168.77.21"
-  end
-
-  config.vm.define 'db' do |machine|
-    machine.vm.hostname = 'db'
-    machine.vm.network "private_network", ip: "192.168.77.22"
-  end
-
-  config.vm.define 'bots' do |machine|
-    machine.vm.hostname = 'bots'
-    machine.vm.network "private_network", ip: "192.168.77.23"
+  {
+    'app' => '192.168.77.21',
+    'db'  => '192.168.77.22',
+    'bot' => '192.168.77.23'
+  }.each do |hostname, ip|
+    config.vm.define hostname do |machine|
+      machine.vm.hostname = 'app'
+      machine.vm.network "private_network", ip: ip
+    end
   end
 
   config.vm.provision "ansible" do |ansible|
