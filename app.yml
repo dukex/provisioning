@@ -29,4 +29,3 @@
   shell: /usr/local/go/bin/go get github.com/tools/godep
   environment:
     GOPATH: ~
-

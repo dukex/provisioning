@@ -14,7 +14,6 @@
   sudo: yes
   vars:
     - temp_dir: "/tmp"
-
   tasks:
     - include: app.yml
 
@@ -23,6 +22,5 @@
   sudo: yes
   vars:
     - temp_dir: "/tmp"
-
   tasks:
     - include: bots.yml
